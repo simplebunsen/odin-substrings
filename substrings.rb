@@ -9,6 +9,7 @@ def substrings(input_string, dictionary)
 
   result_word_hash = Hash.new(0)
 
+  #this is a very verbose way of checking those after looking at other solutions. Coulda used include?, select to make one liner
   word_array.each do |word|
 
     start_index = 0
