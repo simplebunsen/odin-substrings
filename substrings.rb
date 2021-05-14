@@ -1,7 +1,7 @@
 require "pry"
 
-def substrings(string, dictionary)
-  word_array = string.split(" ")
+def substrings(input_string, dictionary)
+  word_array = input_string.split(" ")
 
   #downcase the whole dictionary and the input
   dictionary.map! {|word| word.downcase}
@@ -12,18 +12,19 @@ def substrings(string, dictionary)
   word_array.each do |word|
 
     start_index = 0
-    end_index = 1
+    end_index = 0
     while(start_index < word.length) do 
 
       while(end_index < word.length) do
-        #TODO skip if start > end
-        current_substring = word[start_index, end_index]
-        puts "evaluation substring #{current_substring} at index #{start_index},#{end_index}"
+        current_substring = word[start_index..end_index]
+
+        end_index += 1
+
+        next if current_substring.empty?
 
         if dictionary.include?(current_substring) 
           result_word_hash[current_substring.to_sym] += 1
         end
-      end_index += 1
       end
 
       end_index = 1
@@ -38,4 +39,4 @@ def substrings(string, dictionary)
 end
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
-puts substrings("below", dictionary)
+puts substrings("Howdy partner, sit down! How's it going?", dictionary)
